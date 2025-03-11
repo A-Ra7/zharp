@@ -104,7 +104,7 @@ function draw() {
 
  if (score == 1) {
     setTimeout(() => {
-      gap = 110;
+      gap = 115;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(255, 140, 0)";
@@ -113,7 +113,7 @@ function draw() {
 
  if (score == 2) {
     setTimeout(() => {
-      gap = 100;
+      gap = 110;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(255, 230, 0)";
@@ -122,7 +122,7 @@ function draw() {
 
  if (score == 3) {
     setTimeout(() => {
-      gap = 90;
+      gap = 105;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(30, 225, 0)";
@@ -131,7 +131,7 @@ function draw() {
 
  if (score == 4) {
     setTimeout(() => {
-      gap = 85;
+      gap = 100;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(0, 204, 255)";
@@ -140,7 +140,7 @@ function draw() {
 
  if (score == 5) {
     setTimeout(() => {
-      gap = 80;
+      gap = 95;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(0, 119, 255)";
@@ -149,7 +149,7 @@ function draw() {
 
  if (score == 6) {
     setTimeout(() => {
-      gap = 75;
+      gap = 90;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(221, 0, 255)";
