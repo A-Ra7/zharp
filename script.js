@@ -1,4 +1,5 @@
 var cvs = document.getElementById("canvas");
+var btn = document.getElementById("button");
 var ctx = cvs.getContext("2d");
 
 var bird = new Image();
@@ -26,11 +27,22 @@ luckLvl7Sound.src = "audio/luck-lvl7.mp3";
 
 var gap = 120;
 
+var flyUp = 0;
+var moveUpTouch = 0;
+
 // При нажатии на какую-либо кнопку
 document.addEventListener("keydown", moveUp);
-cvs.addEventListener("click", moveUp);
 
-var flyUp = 0;
+// При нажатии на телефоне
+cvs.addEventListener('touchstart', (event) => {
+  moveUpTouch = setInterval(function(){
+    moveUp();
+  },100);
+})
+
+cvs.addEventListener('touchend', (event) => {
+  clearInterval(moveUpTouch);
+})
 
 function moveUp() {
 yPos -= 25;

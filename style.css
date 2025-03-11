@@ -37,7 +37,7 @@ body {
     font-size: 25px;
 }
 
-.button {
+#button {
     margin-top: 12px;
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     border-radius: 25px;
