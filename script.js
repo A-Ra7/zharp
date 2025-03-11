@@ -35,9 +35,10 @@ document.addEventListener("keydown", moveUp);
 
 // При нажатии на телефоне
 cvs.addEventListener('touchstart', (event) => {
+  moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },100);
+  },70);
 })
 
 cvs.addEventListener('touchend', (event) => {
