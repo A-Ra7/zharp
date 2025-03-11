@@ -38,7 +38,7 @@ cvs.addEventListener('touchstart', (event) => {
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },70);
+  },200);
 })
 
 cvs.addEventListener('touchend', (event) => {
