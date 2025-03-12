@@ -26,7 +26,6 @@ luckLvlSound.src = "audio/luck-lvl.mp3";
 luckLvl7Sound.src = "audio/luck-lvl7.mp3";
 
 var gap = 120;
-
 var flyUp = 0;
 var moveUpTouch = 0;
 
@@ -38,7 +37,7 @@ cvs.addEventListener('touchstart', (event) => {
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },100);
+  },200);
 })
 
 cvs.addEventListener('touchend', (event) => {
@@ -104,7 +103,7 @@ function draw() {
 
  if (score == 1) {
     setTimeout(() => {
-      gap = 115;
+      gap = 110;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(255, 140, 0)";
@@ -113,7 +112,7 @@ function draw() {
 
  if (score == 2) {
     setTimeout(() => {
-      gap = 110;
+      gap = 100;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(255, 230, 0)";
@@ -122,7 +121,7 @@ function draw() {
 
  if (score == 3) {
     setTimeout(() => {
-      gap = 105;
+      gap = 90;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(30, 225, 0)";
@@ -131,7 +130,7 @@ function draw() {
 
  if (score == 4) {
     setTimeout(() => {
-      gap = 100;
+      gap = 85;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(0, 204, 255)";
@@ -140,7 +139,7 @@ function draw() {
 
  if (score == 5) {
     setTimeout(() => {
-      gap = 95;
+      gap = 80;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(0, 119, 255)";
@@ -149,7 +148,7 @@ function draw() {
 
  if (score == 6) {
     setTimeout(() => {
-      gap = 90;
+      gap = 75;
     }, 700);
     luckLvl++;
     cvs.style = "border-color: rgb(221, 0, 255)";
