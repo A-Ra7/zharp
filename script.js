@@ -38,7 +38,7 @@ cvs.addEventListener('touchstart', (event) => {
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },136);
+  },120);
 })
 
 cvs.addEventListener('touchend', (event) => {
@@ -103,34 +103,34 @@ function draw() {
       score++;
 
       //  Уровни Счастья
-      if (score == 1) {
+      if (score == 10) {
           setTimeout(() => {
             gap = 110;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(255, 140, 0)";
-        //  luckLvlSound.play();
+         luckLvlSound.play();
       }
 
-      if (score == 2) {
+      if (score == 20) {
           setTimeout(() => {
             gap = 100;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(255, 230, 0)";
-          // luckLvlSound.play();
+          luckLvlSound.play();
       }
 
-      if (score == 3) {
+      if (score == 30) {
           setTimeout(() => {
             gap = 90;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(30, 225, 0)";
-          // luckLvlSound.play();
+          luckLvlSound.play();
       }
 
-      if (score == 4) {
+      if (score == 40) {
           setTimeout(() => {
             gap = 85;
           }, 700);
@@ -139,7 +139,7 @@ function draw() {
           luckLvlSound.play();
       }
 
-      if (score == 5) {
+      if (score == 50) {
           setTimeout(() => {
             gap = 80;
           }, 700);
@@ -148,7 +148,7 @@ function draw() {
           luckLvlSound.play();
       }
 
-      if (score == 6) {
+      if (score == 60) {
           setTimeout(() => {
             gap = 75;
           }, 700);
@@ -157,12 +157,12 @@ function draw() {
           luckLvlSound.play();
       }
 
-      if (score == 7) {
+      if (score == 70) {
           cvs.style = "border-color: rgb(255, 255, 255)";
           luckLvl7Sound.play();
       }
 
-      if (  score != 4 && score != 5 && score != 6 && score != 7) {
+      if (score != 10 && score != 20 && score != 30 && score != 40 && score != 50 && score != 60 && score != 70) {
         scoreSound.play();
       }
     }
