@@ -2,26 +2,27 @@ var cvs = document.getElementById("canvas");
 var btn = document.getElementById("button");
 var ctx = cvs.getContext("2d");
 
-var bird = new Image();
+var zharp = new Image();
 var bg = new Image();
 var fg = new Image();
-var pipeUp = new Image();
-var pipeBottom = new Image();
+var prep2 = new Image();
+var prep1 = new Image();
 
-bird.src = "img/zharp.png";
+// Изображения
+zharp.src = "img/zharp.png";
 bg.src = "img/bg.png";
 fg.src = "img/fg.png";
-pipeUp.src = "img/der2.png";
-pipeBottom.src = "img/der.png";
+prep1.src = "img/prep1.png";
+prep2.src = "img/prep2.png";
 
 // Звуковые файлы
 var fly = new Audio();
-var score_audio = new Audio();
+var scoreSound = new Audio();
 var luckLvlSound = new Audio();
 var luckLvl7Sound = new Audio();
 
 fly.src = "audio/fly.mp3";
-score_audio.src = "audio/score.mp3";
+scoreSound.src = "audio/score.mp3";
 luckLvlSound.src = "audio/luck-lvl.mp3";
 luckLvl7Sound.src = "audio/luck-lvl7.mp3";
 
@@ -32,12 +33,12 @@ var moveUpTouch = 0;
 // При нажатии на какую-либо кнопку
 document.addEventListener("keydown", moveUp);
 
-// При нажатии на телефоне
+// При нажатии на экран телефона
 cvs.addEventListener('touchstart', (event) => {
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },120);
+  },136);
 })
 
 cvs.addEventListener('touchend', (event) => {
@@ -47,138 +48,138 @@ cvs.addEventListener('touchend', (event) => {
 function moveUp() {
 yPos -= 25;
 
-bird.src = "img/zharp2.png";
+zharp.src = "img/zharp2.png";
 if (flyUp) { 
     clearTimeout(flyUp); 
 }
 flyUp = setTimeout(() => {
-   bird.src = "img/zharp.png";
+   zharp.src = "img/zharp.png";
  }, 200);
 
 fly.play();
 }
 
 // Создание блоков
-var pipe = [];
+var prep = [];
 
-pipe[0] = {
+prep[0] = {
  x : cvs.width,
  y : 0
 }
 
 var score = 0;
 var luckLvl = 1;
-// Позиция птички
+// Позиция Жар-птицы
 var xPos = 12;
 var yPos = 160;
 var grav = 1.6;
 
 function draw() {
- ctx.drawImage(bg, 0, 0);
+  ctx.drawImage(bg, 0, 0);
 
- for(var i = 0; i < pipe.length; i++) {
- ctx.drawImage(pipeUp, pipe[i].x, pipe[i].y);
- ctx.drawImage(pipeBottom, pipe[i].x, pipe[i].y + pipeUp.height + gap);
+  for(var i = 0; i < prep.length; i++) {
+    ctx.drawImage(prep2, prep[i].x, prep[i].y);
+    ctx.drawImage(prep1, prep[i].x, prep[i].y + prep2.height + gap);
 
- pipe[i].x--;
+    prep[i].x--;
 
- if(pipe[i].x == 125) {
- pipe.push({
- x : cvs.width,
- y : Math.floor(Math.random() * pipeUp.height) - pipeUp.height
- });
- }
+    if(prep[i].x == 125) {
+      prep.push({
+      x : cvs.width,
+      y : Math.floor(Math.random() * prep2.height) - prep2.height
+      });
+    }
 
- // Отслеживание прикосновений
- if(xPos + bird.width >= pipe[i].x
- && xPos <= pipe[i].x + pipeUp.width
- && (yPos <= pipe[i].y + pipeUp.height
- || yPos + bird.height >= pipe[i].y + pipeUp.height + gap) || yPos + bird.height >= cvs.height - fg.height) {
- location.reload(); // Перезагрузка страницы
- return; 
- }
+    // Отслеживание прикосновений
+    if(xPos + zharp.width >= prep[i].x
+    && xPos <= prep[i].x + prep2.width
+    && (yPos <= prep[i].y + prep2.height
+    || yPos + zharp.height >= prep[i].y + prep2.height + gap) || yPos + zharp.height >= cvs.height - fg.height) {
+      location.reload(); // Перезагрузка страницы
+      return; 
+    }
 
- if(pipe[i].x == 5) {
- score++;
+    if(prep[i].x == 5) {
+      score++;
 
- if (score == 1) {
-    setTimeout(() => {
-      gap = 110;
-    }, 700);
-    luckLvl++;
-    cvs.style = "border-color: rgb(255, 140, 0)";
-   //  luckLvlSound.play();
- }
+      //  Уровни Счастья
+      if (score == 1) {
+          setTimeout(() => {
+            gap = 110;
+          }, 700);
+          luckLvl++;
+          cvs.style = "border-color: rgb(255, 140, 0)";
+        //  luckLvlSound.play();
+      }
 
- if (score == 2) {
-    setTimeout(() => {
-      gap = 100;
-    }, 700);
-    luckLvl++;
-    cvs.style = "border-color: rgb(255, 230, 0)";
-    luckLvlSound.play();
- }
+      if (score == 2) {
+          setTimeout(() => {
+            gap = 100;
+          }, 700);
+          luckLvl++;
+          cvs.style = "border-color: rgb(255, 230, 0)";
+          // luckLvlSound.play();
+      }
 
- if (score == 3) {
-    setTimeout(() => {
-      gap = 90;
-    }, 700);
-    luckLvl++;
-    cvs.style = "border-color: rgb(30, 225, 0)";
-    luckLvlSound.play();
- }
+      if (score == 3) {
+          setTimeout(() => {
+            gap = 90;
+          }, 700);
+          luckLvl++;
+          cvs.style = "border-color: rgb(30, 225, 0)";
+          // luckLvlSound.play();
+      }
 
- if (score == 4) {
-    setTimeout(() => {
-      gap = 85;
-    }, 700);
-    luckLvl++;
-    cvs.style = "border-color: rgb(0, 204, 255)";
-    luckLvlSound.play();
- }
+      if (score == 4) {
+          setTimeout(() => {
+            gap = 85;
+          }, 700);
+          luckLvl++;
+          cvs.style = "border-color: rgb(0, 204, 255)";
+          luckLvlSound.play();
+      }
 
- if (score == 5) {
-    setTimeout(() => {
-      gap = 80;
-    }, 700);
-    luckLvl++;
-    cvs.style = "border-color: rgb(0, 119, 255)";
-    luckLvlSound.play();
- }
+      if (score == 5) {
+          setTimeout(() => {
+            gap = 80;
+          }, 700);
+          luckLvl++;
+          cvs.style = "border-color: rgb(0, 119, 255)";
+          luckLvlSound.play();
+      }
 
- if (score == 6) {
-    setTimeout(() => {
-      gap = 75;
-    }, 700);
-    luckLvl++;
-    cvs.style = "border-color: rgb(221, 0, 255)";
-    luckLvlSound.play();
- }
+      if (score == 6) {
+          setTimeout(() => {
+            gap = 75;
+          }, 700);
+          luckLvl++;
+          cvs.style = "border-color: rgb(221, 0, 255)";
+          luckLvlSound.play();
+      }
 
- if (score == 7) {
-    cvs.style = "border-color: rgb(255, 255, 255)";
-    luckLvl++;
-    luckLvl7Sound.play();
- }
+      if (score == 7) {
+          cvs.style = "border-color: rgb(255, 255, 255)";
+          luckLvl7Sound.play();
+      }
 
- if (   score != 2 && score != 3 && score != 4 && score != 5 && score != 6 && score != 7) {
-   score_audio.play();
- }
+      if (  score != 4 && score != 5 && score != 6 && score != 7) {
+        scoreSound.play();
+      }
+    }
+  }
 
- }
- }
+  ctx.drawImage(fg, 0, cvs.height - fg.height);
+  ctx.drawImage(zharp, xPos, yPos);
 
- ctx.drawImage(fg, 0, cvs.height - fg.height);
- ctx.drawImage(bird, xPos, yPos);
+  yPos += grav;
 
- yPos += grav;
+  // Счёт
+  ctx.fillStyle = "#000";
+  ctx.font = "25px Arial";
+  ctx.fillText("Счет: " + score, 12, cvs.height - 52);
+  ctx.fillText("Ур. Счастья: " + luckLvl, 12, cvs.height - 16);
 
- ctx.fillStyle = "#000";
- ctx.font = "25px Arial";
- ctx.fillText("Счет: " + score, 110, cvs.height - 52);
- ctx.fillText("Уровень Счастья: " + luckLvl, 30, cvs.height - 16);
-
- requestAnimationFrame(draw);
+  requestAnimationFrame(draw);
 }
 
-pipeBottom.onload = draw;
+prep1.onload = draw;
