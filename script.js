@@ -34,16 +34,17 @@ var moveUpTouch = 0;
 document.addEventListener("keydown", moveUp);
 
 // При нажатии на экран телефона
-cvs.addEventListener('touchstart', (event) => {
+btn.addEventListener('touchstart', (event) => {
+  btn.innerHTML = '';
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
   },120);
-})
+});
 
-cvs.addEventListener('touchend', (event) => {
+btn.addEventListener('touchend', (event) => {
   clearInterval(moveUpTouch);
-})
+});
 
 function moveUp() {
 yPos -= 25;
@@ -105,7 +106,7 @@ function draw() {
       //  Уровни Счастья
       if (score == 10) {
           setTimeout(() => {
-            gap = 115;
+            gap = 110;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(255, 140, 0)";
@@ -114,7 +115,7 @@ function draw() {
 
       if (score == 20) {
           setTimeout(() => {
-            gap = 110;
+            gap = 100;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(255, 230, 0)";
@@ -123,7 +124,7 @@ function draw() {
 
       if (score == 30) {
           setTimeout(() => {
-            gap = 105;
+            gap = 90;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(30, 225, 0)";
@@ -132,7 +133,7 @@ function draw() {
 
       if (score == 40) {
           setTimeout(() => {
-            gap = 100;
+            gap = 85;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(0, 204, 255)";
@@ -141,7 +142,7 @@ function draw() {
 
       if (score == 50) {
           setTimeout(() => {
-            gap = 95;
+            gap = 80;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(0, 119, 255)";
@@ -150,7 +151,7 @@ function draw() {
 
       if (score == 60) {
           setTimeout(() => {
-            gap = 90;
+            gap = 75;
           }, 700);
           luckLvl++;
           cvs.style = "border-color: rgb(221, 0, 255)";

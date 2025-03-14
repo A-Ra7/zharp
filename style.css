@@ -38,14 +38,14 @@ body {
 }
 
 #button {
-    margin-top: 12px;
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     border-radius: 25px;
     font-size: 18px;
     font-weight: 700;
+    height: 70px;
+    width: 250px;
     color: #FFFFFF;
     cursor: pointer;
-    padding: 7px 45px;
     text-align: center;
     transition: all ease-out 0.2s;
     border: none;
@@ -53,13 +53,15 @@ body {
     text-decoration: none;
     border: solid 0px;
     align-self: center;
+    margin-bottom: 70px;
+    display: none;
 }
 
-.button:hover {
+#button:hover {
     box-shadow: rgba(255, 30, 30, 0.7) 0 3px 7px;
 }
 
-.button:active {
+#button:active {
     box-shadow: rgba(255, 30, 30, 0.7) 0 3px 12px;
     transition: all ease 0.1s;
 }  
@@ -71,6 +73,10 @@ body {
     }
 
     #canvas {
-        margin-bottom: 70px;
+        margin-bottom: 12px;
+    }
+
+    #button {
+        display: block;
     }
 }
