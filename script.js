@@ -29,39 +29,34 @@ luckLvl7Sound.src = "audio/luck-lvl7.mp3";
 
 var gap = 120;
 var flyUp = 0;
-var parit = 0;
 var moveUpTouch = 0;
 
 // При нажатии на какую-либо кнопку
 document.addEventListener("keydown", (e) => {
-  if (e.code == 'ArrowUp' && parit == 0) {
+  if (e.code == 'ArrowUp') {
     moveUp();
   }
 });
 
 document.addEventListener("keydown", (e) => {
   if (e.code == 'Space') {
-    parit = 1;
-    parit2();
+    parit();
   }
 });
 
 document.addEventListener("keyup", (e) => {
   if (e.code == 'Space') {
-    parit = 0;
     grav = 1.6;
   }
 });
 
 // При нажатии на экран телефона
 btnUp.addEventListener('touchstart', (event) => {
-  if (parit == 0) {
-    btnUp.innerHTML = '';
+  btnUp.innerHTML = '';
+  moveUp();
+  moveUpTouch = setInterval(function(){
     moveUp();
-    moveUpTouch = setInterval(function(){
-      moveUp();
-    },120);
-  }
+  },120);
 });
 
 btnUp.addEventListener('touchend', (event) => {
@@ -70,12 +65,10 @@ btnUp.addEventListener('touchend', (event) => {
 
 btnParit.addEventListener('touchstart', (event) => {
   btnParit.innerHTML = '';
-  parit = 1;
-  parit2();
+  parit();
 });
 
 btnParit.addEventListener('touchend', (event) => {
-  parit = 0;
   grav = 1.6;
 });
 
@@ -93,7 +86,7 @@ flyUp = setTimeout(() => {
 fly.play();
 }
 
-function parit2() {
+function parit() {
   grav = 0.5;
 }
 

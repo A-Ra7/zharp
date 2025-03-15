@@ -41,7 +41,7 @@ body {
     display: flex;
 }
 
-#button-up, #button-parit{
+#button-up {
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     border-radius: 25px;
     font-size: 18px;
@@ -69,6 +69,26 @@ body {
     box-shadow: rgba(255, 30, 30, 0.7) 0 3px 12px;
     transition: all ease 0.1s;
 }  
+
+#button-parit {
+    background: linear-gradient(to top, #ffb700, #ffd363) !important;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    height: 70px;
+    width: 140px;
+    color: #FFFFFF;
+    cursor: pointer;
+    text-align: center;
+    transition: all ease-out 0.2s;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.3) 0 3px 7px;
+    text-decoration: none;
+    border: solid 0px;
+    align-self: center;
+    margin: 0 7px 70px;
+    display: none;
+}
 
 #button-parit:hover {
     box-shadow: rgba(255, 30, 30, 0.7) 0 3px 7px;
