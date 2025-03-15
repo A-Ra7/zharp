@@ -1,5 +1,6 @@
 var cvs = document.getElementById("canvas");
-var btn = document.getElementById("button");
+var btnUp = document.getElementById("button-up");
+var btnParit = document.getElementById("button-parit");
 var ctx = cvs.getContext("2d");
 
 var zharp = new Image();
@@ -28,22 +29,54 @@ luckLvl7Sound.src = "audio/luck-lvl7.mp3";
 
 var gap = 120;
 var flyUp = 0;
+var parit = 0;
 var moveUpTouch = 0;
 
 // При нажатии на какую-либо кнопку
-document.addEventListener("keydown", moveUp);
-
-// При нажатии на экран телефона
-btn.addEventListener('touchstart', (event) => {
-  btn.innerHTML = '';
-  moveUp();
-  moveUpTouch = setInterval(function(){
+document.addEventListener("keydown", (e) => {
+  if (e.code == 'ArrowUp' && parit == 0) {
     moveUp();
-  },120);
+  }
 });
 
-btn.addEventListener('touchend', (event) => {
+document.addEventListener("keydown", (e) => {
+  if (e.code == 'Space') {
+    parit = 1;
+    parit2();
+  }
+});
+
+document.addEventListener("keyup", (e) => {
+  if (e.code == 'Space') {
+    parit = 0;
+    grav = 1.6;
+  }
+});
+
+// При нажатии на экран телефона
+btnUp.addEventListener('touchstart', (event) => {
+  if (parit == 0) {
+    btnUp.innerHTML = '';
+    moveUp();
+    moveUpTouch = setInterval(function(){
+      moveUp();
+    },120);
+  }
+});
+
+btnUp.addEventListener('touchend', (event) => {
   clearInterval(moveUpTouch);
+});
+
+btnParit.addEventListener('touchstart', (event) => {
+  btnParit.innerHTML = '';
+  parit = 1;
+  parit2();
+});
+
+btnParit.addEventListener('touchend', (event) => {
+  parit = 0;
+  grav = 1.6;
 });
 
 function moveUp() {
@@ -60,6 +93,10 @@ flyUp = setTimeout(() => {
 fly.play();
 }
 
+function parit2() {
+  grav = 0.5;
+}
+
 // Создание блоков
 var prep = [];
 
@@ -74,6 +111,14 @@ var luckLvl = 1;
 var xPos = 12;
 var yPos = 160;
 var grav = 1.6;
+
+if (!localStorage.getItem('maxScore')) {
+  localStorage.setItem('maxScore', 0);
+}
+
+if (!localStorage.getItem('luckLvl')) {
+  localStorage.setItem('luckLvl', 1);
+}
 
 function draw() {
   ctx.drawImage(bg, 0, 0);
@@ -96,8 +141,19 @@ function draw() {
     && xPos <= prep[i].x + prep2.width
     && (yPos <= prep[i].y + prep2.height
     || yPos + zharp.height >= prep[i].y + prep2.height + gap) || yPos + zharp.height >= cvs.height - fg.height) {
-      location.reload(); // Перезагрузка страницы
-      return; 
+
+      if (score > localStorage.getItem('maxScore')) {
+        localStorage.setItem('maxScore', score);
+        location.hash = "#window-container";
+        var winTxt = document.getElementById("window-text");
+        winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "/70 </b> препятствий <br> Уровень Счастья <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Терпи, казак/казачка <br> Счастье требует терпение! <br><br> Пройди <b>7</b> уровней и найди <b>перо Жар-птицы!</b>";
+
+        return; 
+      }
+      else {
+        location.reload(); // Перезагрузка страницы
+        return; 
+      }
     }
 
     if(prep[i].x == 5) {
@@ -109,6 +165,7 @@ function draw() {
             gap = 110;
           }, 700);
           luckLvl++;
+          localStorage.setItem('luckLvl', luckLvl);
           cvs.style = "border-color: rgb(255, 140, 0)";
          luckLvlSound.play();
       }
@@ -118,6 +175,7 @@ function draw() {
             gap = 100;
           }, 700);
           luckLvl++;
+          localStorage.setItem('luckLvl', luckLvl);
           cvs.style = "border-color: rgb(255, 230, 0)";
           luckLvlSound.play();
       }
@@ -127,6 +185,7 @@ function draw() {
             gap = 90;
           }, 700);
           luckLvl++;
+          localStorage.setItem('luckLvl', luckLvl);
           cvs.style = "border-color: rgb(30, 225, 0)";
           luckLvlSound.play();
       }
@@ -136,6 +195,7 @@ function draw() {
             gap = 85;
           }, 700);
           luckLvl++;
+          localStorage.setItem('luckLvl', luckLvl);
           cvs.style = "border-color: rgb(0, 204, 255)";
           luckLvlSound.play();
       }
@@ -145,6 +205,7 @@ function draw() {
             gap = 80;
           }, 700);
           luckLvl++;
+          localStorage.setItem('luckLvl', luckLvl);
           cvs.style = "border-color: rgb(0, 119, 255)";
           luckLvlSound.play();
       }
@@ -154,6 +215,7 @@ function draw() {
             gap = 75;
           }, 700);
           luckLvl++;
+          localStorage.setItem('luckLvl', luckLvl);
           cvs.style = "border-color: rgb(221, 0, 255)";
           luckLvlSound.play();
       }
@@ -183,4 +245,4 @@ function draw() {
   requestAnimationFrame(draw);
 }
 
-prep1.onload = draw;
+prep1.onload = draw();

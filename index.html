@@ -11,11 +11,29 @@
 <body>
     <div class="container">
         <h1>Пари как Жар-птица</h1> 
-        <h2>Преодолей 70 препятствий, <br> пройди 7 уровней <br> и увеличь своё Счастье!</h2>
-        <!-- <a href="" id="button">Ещё раз</a> -->
+        <h2>Преодолей 70 препятствий <br><br> Пройди 7 уровней Счастья <br><br> Найди перо Жар-птицы!</h2>
+        <a href="#canvas" id="button2" onclick="draw()">Играть</a>
     </div>
+
     <canvas id="canvas" width="288" height="512"></canvas>
-    <button id="button" type="button">Нажми сюда <br> чтобы взлететь!</button>
+
+    <div class="button-container">
+        <button id="button-parit" type="button">Жми чтобы парить!</button>
+        <button id="button-up" type="button">Жми чтобы взлететь!</button>
+    </div>
+
+    <div id="window-container">
+        <a href="#canvas" class="wrapper"></a>
+        <a href="#canvas" class="close">
+            <img src="img/krestik.png" alt="">
+        </a>
+        <div class="window">
+            <h1>Новый рекорд!</h1>
+            <p id="window-text">
+                
+            </p>
+        </div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
