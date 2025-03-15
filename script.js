@@ -84,7 +84,7 @@ function draw() {
 
     prep[i].x--;
 
-    if(prep[i].x == 125) {
+    if(prep[i].x == 100) {
       prep.push({
       x : cvs.width,
       y : Math.floor(Math.random() * prep2.height) - prep2.height
