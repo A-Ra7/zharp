@@ -91,11 +91,11 @@ body {
 }
 
 #button-parit:hover {
-    box-shadow: rgba(255, 30, 30, 0.7) 0 3px 7px;
+    box-shadow: #ffc01fa7 0 3px 7px;
 }
 
 #button-parit:active {
-    box-shadow: rgba(255, 30, 30, 0.7) 0 3px 12px;
+    box-shadow: #ffc01fa7 0 3px 12px;
     transition: all ease 0.1s;
 }  
 
