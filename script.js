@@ -143,9 +143,9 @@ function draw() {
       if (score > localStorage.getItem('maxScore')) {
         localStorage.setItem('maxScore', score);
         location.hash = "#window-container";
-        if (score < 2) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> <b>Счастье</b> требует терпение и жертв! <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
-        if (score >= 2 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл <b>перо Жар-птицы!</b> <br> <b>Счастье</b> уже твоё!"; }
-        if (score >= 2 && localStorage.getItem('pero') == 1) { 
+        if (score < 70) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> <b>Счастье</b> требует терпение и жертв! <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
+        if (score >= 70 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл <b>перо Жар-птицы!</b> <br> <b>Счастье</b> уже твоё!"; }
+        if (score >= 70 && localStorage.getItem('pero') == 1) { 
           localStorage.setItem('pero', 2);
           winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты нашёл <b>перо Жар-птицы!</b> <b>Счастье</b> теперь твоё!"; 
           imgCont.innerHTML += '<img src="img/per2.png" class="pero" alt="">';
