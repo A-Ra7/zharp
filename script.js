@@ -56,7 +56,7 @@ btnUp.addEventListener('touchstart', (event) => {
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },120);
+  },70);
 });
 
 btnUp.addEventListener('touchend', (event) => {
