@@ -1,6 +1,9 @@
 var cvs = document.getElementById("canvas");
 var btnUp = document.getElementById("button-up");
 var btnParit = document.getElementById("button-parit");
+var winTxt = document.getElementById("window-text");
+var imgCont = document.getElementById("img-container");
+var per = document.getElementById("pero");
 var ctx = cvs.getContext("2d");
 
 var zharp = new Image();
@@ -31,16 +34,13 @@ var gap = 120;
 var flyUp = 0;
 var moveUpTouch = 0;
 
-// При нажатии на какую-либо кнопку
-document.addEventListener("keydown", (e) => {
-  if (e.code == 'ArrowUp') {
-    moveUp();
-  }
-});
-
+// При нажатии на кнопки на клавиатуре
 document.addEventListener("keydown", (e) => {
   if (e.code == 'Space') {
     parit();
+  }
+  else {
+    moveUp();
   }
 });
 
@@ -50,16 +50,17 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-// При нажатии на экран телефона
+// При нажатии на кнопки на телефоне
 btnUp.addEventListener('touchstart', (event) => {
   btnUp.innerHTML = '';
   moveUp();
   moveUpTouch = setInterval(function(){
     moveUp();
-  },70);
+  },120);
 });
 
 btnUp.addEventListener('touchend', (event) => {
+  btnUp.innerHTML = 'Жми чтобы взлететь!';
   clearInterval(moveUpTouch);
 });
 
@@ -69,6 +70,7 @@ btnParit.addEventListener('touchstart', (event) => {
 });
 
 btnParit.addEventListener('touchend', (event) => {
+  btnParit.innerHTML = 'Жми чтобы парить!';
   grav = 1.6;
 });
 
@@ -113,6 +115,10 @@ if (!localStorage.getItem('luckLvl')) {
   localStorage.setItem('luckLvl', 1);
 }
 
+if (!localStorage.getItem('pero')) {
+  localStorage.setItem('pero', 1);
+}
+
 function draw() {
   ctx.drawImage(bg, 0, 0);
 
@@ -134,13 +140,16 @@ function draw() {
     && xPos <= prep[i].x + prep2.width
     && (yPos <= prep[i].y + prep2.height
     || yPos + zharp.height >= prep[i].y + prep2.height + gap) || yPos + zharp.height >= cvs.height - fg.height) {
-
       if (score > localStorage.getItem('maxScore')) {
         localStorage.setItem('maxScore', score);
         location.hash = "#window-container";
-        var winTxt = document.getElementById("window-text");
-        winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "/70 </b> препятствий <br> Уровень Счастья <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Терпи, казак/казачка <br> Счастье требует терпение! <br><br> Пройди <b>7</b> уровней и найди <b>перо Жар-птицы!</b>";
-
+        if (score < 70) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "/70 </b> препятствий <br> Уровень Счастья <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Счастье требует терпение и иногда жертв! <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
+        if (score >= 70 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "/70 </b> препятствий <br> Уровень Счастья <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл перо Жар-птицы! <br> Счастье уже твоё!"; }
+        if (score >= 70 && localStorage.getItem('pero') == 1) { 
+          localStorage.setItem('pero', 2);
+          winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "/70 </b> препятствий <br> Уровень Счастья <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты нашёл <b>перо Жар-птицы!</b> Счастье теперь твоё!"; 
+          imgCont.innerHTML += '<img src="img/per2.png" class="pero" alt="">';
+        }
         return; 
       }
       else {
@@ -232,10 +241,15 @@ function draw() {
   // Счёт
   ctx.fillStyle = "#000";
   ctx.font = "25px Arial";
-  ctx.fillText("Счет: " + score, 12, cvs.height - 52);
-  ctx.fillText("Ур. Счастья: " + luckLvl, 12, cvs.height - 16);
+  ctx.fillText("Счет: " + score, 101, cvs.height - 52);
+  ctx.fillText("Ур. Счастья: " + luckLvl, 61, cvs.height - 16);
 
   requestAnimationFrame(draw);
 }
 
 prep1.onload = draw();
+
+function reload() {
+  location.hash = "#";
+  location.reload();
+}
