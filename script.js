@@ -250,6 +250,6 @@ function draw() {
 prep1.onload = draw();
 
 function reload() {
-  location.hash = "#";
+  location.hash = "#canvas";
   location.reload();
 }
