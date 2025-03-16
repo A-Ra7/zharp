@@ -12,7 +12,7 @@
     <div class="container">
         <h1>Пари как Жар-птица</h1> 
         <h2>Преодолей 70 препятствий <br><br> Пройди 7 уровней Счастья <br><br> Найди перо Жар-птицы!</h2>
-        <a href="#button-parit" id="button2" class="button">Играть</a>
+        <a href="#canvas" id="button2" class="button">Играть</a>
     </div>
 
     <canvas id="canvas" width="288" height="512"></canvas>
@@ -23,7 +23,7 @@
     </div>
 
     <div id="window-container">
-        <a href="#canvas" class="wrapper"></a>
+        <a onclick="reload()" class="wrapper"></a>
         <a onclick="reload()" class="close">
             <img src="img/krestik.png" alt="">
         </a>
@@ -34,6 +34,7 @@
             <a id="button" class="button" onclick="reload()">Играть</a>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
