@@ -32,6 +32,8 @@ luckLvl7Sound.src = "audio/luck-lvl7.mp3";
 
 var gap = 120;
 var flyUp = 0;
+var flyDown = 0;
+var razm = 0;
 var moveUpTouch = 0;
 
 // При нажатии на кнопки на клавиатуре
@@ -39,7 +41,7 @@ document.addEventListener("keydown", (e) => {
   if (e.code == 'Space') {
     parit();
   }
-  else {
+  else { 
     moveUp();
   }
 });
@@ -47,6 +49,9 @@ document.addEventListener("keydown", (e) => {
 document.addEventListener("keyup", (e) => {
   if (e.code == 'Space') {
     grav = 1.6;
+  }
+  else {    
+    moveDown();
   }
 });
 
@@ -62,6 +67,7 @@ btnUp.addEventListener('touchstart', (event) => {
 btnUp.addEventListener('touchend', (event) => {
   btnUp.innerHTML = 'Жми чтобы взлететь!';
   clearInterval(moveUpTouch);
+  moveDown();
 });
 
 btnParit.addEventListener('touchstart', (event) => {
@@ -74,18 +80,37 @@ btnParit.addEventListener('touchend', (event) => {
   grav = 1.6;
 });
 
+
 function moveUp() {
-yPos -= 25;
+  yPos -= 25;
 
-zharp.src = "img/zharp2.png";
-if (flyUp) { 
-    clearTimeout(flyUp); 
+  if (razm == 0) { 
+    zharp.src = "img/zharp2.png" 
+    razm = 1;
+
+    clearInterval(flyDown);
+    clearInterval(flyUp);
+
+    flyDown = setInterval(() => {
+      zharp.src = "img/zharp.png";
+    }, 300);
+
+    flyUp = setInterval(() => {
+      zharp.src = "img/zharp2.png";
+    }, 400);
+
+  };
+
+  fly.play();
 }
-flyUp = setTimeout(() => {
-   zharp.src = "img/zharp.png";
- }, 200);
 
-fly.play();
+function moveDown() {
+  clearInterval(flyDown);
+  clearInterval(flyUp);
+  flyDown = setTimeout(() => {
+    zharp.src = "img/zharp.png";
+  }, 30);
+  razm = 0;
 }
 
 function parit() {
@@ -143,7 +168,7 @@ function draw() {
       if (score > localStorage.getItem('maxScore')) {
         localStorage.setItem('maxScore', score);
         location.hash = "#window-container";
-        if (score < 70) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> <b>Счастье</b> требует терпение и жертв! <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
+        if (score < 70) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> <b>Счастье</b> требует терпение и жертв! <br><br> Жми долго <b><Взлететь> (Любая клавиша)</b> чтобы взлететь высоко и используй <b><Парить> (Клавиша пробел)</b> чтобы плавно пройти препятствия <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
         if (score >= 70 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл <b>перо Жар-птицы!</b> <br> <b>Счастье</b> уже твоё!"; }
         if (score >= 70 && localStorage.getItem('pero') == 1) { 
           localStorage.setItem('pero', 2);

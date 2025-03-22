@@ -63,7 +63,7 @@ body {
 #button {
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     padding: 12px 70px;
-    margin-top: 12px;
+    margin: 25px;
 }
 
 #button2 {
@@ -148,8 +148,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 30px 25px;
-    width: 300px;
+    width: 400px;
     text-align: center;
     display: flex;
     align-items: center;
@@ -163,6 +162,7 @@ body {
 
 #window-text {
     font-size: 20px;
+    margin: 0 25px;
 }
 
 .close {
@@ -202,7 +202,7 @@ body {
     }
 
     #window {
-        height: 84%;
-        width: 75%;
+        height: 90%;
+        width: 90%;
     }
 }
