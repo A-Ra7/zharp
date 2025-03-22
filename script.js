@@ -1,10 +1,11 @@
 var cvs = document.getElementById("canvas");
+var ctx = cvs.getContext("2d");
+var record = document.getElementById("record");
 var btnUp = document.getElementById("button-up");
 var btnParit = document.getElementById("button-parit");
 var winTxt = document.getElementById("window-text");
 var imgCont = document.getElementById("img-container");
 var per = document.getElementById("pero");
-var ctx = cvs.getContext("2d");
 
 var zharp = new Image();
 var bg = new Image();
@@ -93,11 +94,11 @@ function moveUp() {
 
     flyDown = setInterval(() => {
       zharp.src = "img/zharp.png";
-    }, 300);
+    }, 500);
 
     flyUp = setInterval(() => {
       zharp.src = "img/zharp2.png";
-    }, 400);
+    }, 600);
 
   };
 
@@ -109,7 +110,7 @@ function moveDown() {
   clearInterval(flyUp);
   flyDown = setTimeout(() => {
     zharp.src = "img/zharp.png";
-  }, 30);
+  }, 70);
   razm = 0;
 }
 
@@ -144,6 +145,8 @@ if (!localStorage.getItem('pero')) {
   localStorage.setItem('pero', 1);
 }
 
+record.innerHTML = "<b>Твой рекорд</b> <br> Препятствий: " + localStorage.getItem('maxScore') + "<br> Уровень Счастья: " + localStorage.getItem('luckLvl');
+
 function draw() {
   ctx.drawImage(bg, 0, 0);
 
@@ -168,11 +171,11 @@ function draw() {
       if (score > localStorage.getItem('maxScore')) {
         localStorage.setItem('maxScore', score);
         location.hash = "#window-container";
-        if (score < 70) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> <b>Счастье</b> требует терпение и жертв! <br><br> Жми долго <b><Взлететь> (Любая клавиша)</b> чтобы взлететь высоко и используй <b><Парить> (Клавиша пробел)</b> чтобы плавно пройти препятствия <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
-        if (score >= 70 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл <b>перо Жар-птицы!</b> <br> <b>Счастье</b> уже твоё!"; }
+        if (score < 70) { winTxt.innerHTML = "Пройдено препятствий: <b>" + localStorage.getItem('maxScore') + "</b> <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br> <b>Счастье</b> требует терпение и жертв! <br><br> Жми долго <b><Взлететь> (Любая клавиша)</b> чтобы взлететь высоко и используй <b><Парить> (Клавиша пробел)</b> чтобы плавно пройти препятствия <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
+        if (score >= 70 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено препятствий: <b>" + localStorage.getItem('maxScore') + "</b> <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл <b>перо Жар-птицы!</b> <br> <b>Счастье</b> уже твоё!"; }
         if (score >= 70 && localStorage.getItem('pero') == 1) { 
           localStorage.setItem('pero', 2);
-          winTxt.innerHTML = "Пройдено <b>" + localStorage.getItem('maxScore') + "</b> препятствий <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты нашёл <b>перо Жар-птицы!</b> <b>Счастье</b> теперь твоё!"; 
+          winTxt.innerHTML = "Пройдено препятствий: <b>" + localStorage.getItem('maxScore') + "</b> <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты нашёл <b>перо Жар-птицы!</b> <b>Счастье</b> теперь твоё!"; 
           imgCont.innerHTML += '<img src="img/per2.png" class="pero" alt="">';
         }
         return; 

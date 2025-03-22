@@ -23,7 +23,7 @@ body {
 }
 
 .container {
-    padding: 70px 25px;
+    padding: 30px 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,6 +39,11 @@ body {
 
 .container h2 {
     font-size: 25px;
+}
+
+#record {
+    margin-top: 0;
+    color: #ff9d00;
 }
 
 .button-container {
@@ -63,13 +68,13 @@ body {
 #button {
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     padding: 12px 70px;
-    margin: 25px;
+    margin: 25px 25px 12px;
 }
 
 #button2 {
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     padding: 12px 70px;
-    margin-bottom: 12px;
+    margin-top: 12px;
     display: none;
 }
 
@@ -149,6 +154,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
+    padding: 30px 0;
     text-align: center;
     display: flex;
     align-items: center;
@@ -202,7 +208,6 @@ body {
     }
 
     #window {
-        height: 90%;
         width: 90%;
     }
 }
