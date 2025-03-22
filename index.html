@@ -9,20 +9,24 @@
     <link rel="shortcut icon" type="image/png" href="img/zharp.png">
 </head>
 <body>
-    <div class="container">
-        <h1>Пари как Жар-птица</h1> 
-        <h2>Преодолей 70 препятствий <br><br> Пройди 7 уровней Счастья <br><br> Найди перо Жар-птицы!</h2>
-        <h2 id="record"></h2>
-        <a href="#canvas" id="button2" class="button">Играть</a>
+    <div id="main-container">
+        <div class="container">
+            <h1>Пари как Жар-птица</h1> 
+            <h2>Преодолей 70 препятствий <br><br> Пройди 7 уровней Счастья <br><br> Найди перо Жар-птицы!</h2>
+            <h2 id="record"></h2>
+            <a href="#canvas" id="button2" class="button">Играть</a>
+        </div>
     </div>
 
-    <canvas id="canvas" width="288" height="512"></canvas>
+    <div id="game-container">
+        <canvas id="canvas" width="288" height="512"></canvas>
 
-    <div class="button-container">
-        <button id="button-parit" class="button" type="button">Жми чтобы парить!</button>
-        <button id="button-up" class="button" type="button">Жми чтобы взлететь!</button>
+        <div class="button-container">
+            <button id="button-parit" class="button" type="button">Жми чтобы парить!</button>
+            <button id="button-up" class="button" type="button">Жми чтобы взлететь!</button>
+        </div>
     </div>
-
+    
     <div id="window-container">
         <a onclick="reload()" class="wrapper"></a>
         <a onclick="reload()" class="close">

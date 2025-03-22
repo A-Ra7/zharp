@@ -17,6 +17,12 @@ body {
     line-height: 30px;
 }
 
+#main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #canvas {
     border-radius: 25px;
     border: solid 3px red;
@@ -30,7 +36,7 @@ body {
     background-color: #ffffffe7;
     border-radius: 70px;
     text-align: center;
-    margin: 25px 25px 70px;
+    margin: 70px 25px;
 }
 
 .container h1 {
@@ -44,6 +50,13 @@ body {
 #record {
     margin-top: 0;
     color: #ff9d00;
+}
+
+#game-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: column;
 }
 
 .button-container {
@@ -197,6 +210,14 @@ body {
     body {
         background-position-x: left;
         flex-direction: column;
+    }
+
+    #main-container {
+        height: 100vh;
+    }
+
+    #game-container {
+        height: 100vh;
     }
 
     #canvas {
