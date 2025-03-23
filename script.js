@@ -81,7 +81,6 @@ btnParit.addEventListener('touchend', (event) => {
   grav = 1.6;
 });
 
-
 function moveUp() {
   yPos -= 25;
 
@@ -145,7 +144,7 @@ if (!localStorage.getItem('pero')) {
   localStorage.setItem('pero', 1);
 }
 
-record.innerHTML = "<b>Твой рекорд</b> <br> Препятствий: " + localStorage.getItem('maxScore') + "<br> Уровень Счастья: " + localStorage.getItem('luckLvl');
+record.innerHTML = "<b><u>Твой рекорд</u></b> <br> Препятствий: " + localStorage.getItem('maxScore') + "<br> Уровень Счастья: " + localStorage.getItem('luckLvl');
 
 function draw() {
   ctx.drawImage(bg, 0, 0);
@@ -171,7 +170,7 @@ function draw() {
       if (score > localStorage.getItem('maxScore')) {
         localStorage.setItem('maxScore', score);
         location.hash = "#window-container";
-        if (score < 70) { winTxt.innerHTML = "Пройдено препятствий: <b>" + localStorage.getItem('maxScore') + "</b> <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br> <b>Счастье</b> требует терпение и жертв! <br><br> Жми долго <b><Взлететь> (Любая клавиша)</b> чтобы взлететь высоко и используй <b><Парить> (Клавиша пробел)</b> чтобы плавно пройти препятствия <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
+        if (score < 70) { winTxt.innerHTML = "Пройдено препятствий: <b>" + localStorage.getItem('maxScore') + "</b> <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br> <b>Счастье</b> требует терпение и жертв! <br><br> Жми долго <b><Взлететь></b> чтобы поднятся высоко, используй <b><Парить></b> чтобы плавно пройти препятствия и держи <b>Обе вместе</b> чтобы поднятся быстрее <br><br> Пройди все <b>7</b> уровней и найди <b>перо Жар-птицы!</b>"; }
         if (score >= 70 && localStorage.getItem('pero') == 2) { winTxt.innerHTML = "Пройдено препятствий: <b>" + localStorage.getItem('maxScore') + "</b> <br> Уровень Счастья: <b>" + localStorage.getItem('luckLvl') + "</b> <br><br> Ты уже нашёл <b>перо Жар-птицы!</b> <br> <b>Счастье</b> уже твоё!"; }
         if (score >= 70 && localStorage.getItem('pero') == 1) { 
           localStorage.setItem('pero', 2);
@@ -195,7 +194,7 @@ function draw() {
             gap = 110;
           }, 700);
           luckLvl++;
-          localStorage.setItem('luckLvl', luckLvl);
+          if (luckLvl > localStorage.getItem('luckLvl')) { localStorage.setItem('luckLvl', luckLvl); }
           cvs.style = "border-color: rgb(255, 140, 0)";
          luckLvlSound.play();
       }
@@ -205,7 +204,7 @@ function draw() {
             gap = 100;
           }, 700);
           luckLvl++;
-          localStorage.setItem('luckLvl', luckLvl);
+          if (luckLvl > localStorage.getItem('luckLvl')) { localStorage.setItem('luckLvl', luckLvl); }
           cvs.style = "border-color: rgb(255, 230, 0)";
           luckLvlSound.play();
       }
@@ -215,7 +214,7 @@ function draw() {
             gap = 90;
           }, 700);
           luckLvl++;
-          localStorage.setItem('luckLvl', luckLvl);
+          if (luckLvl > localStorage.getItem('luckLvl')) { localStorage.setItem('luckLvl', luckLvl); }
           cvs.style = "border-color: rgb(30, 225, 0)";
           luckLvlSound.play();
       }
@@ -225,7 +224,7 @@ function draw() {
             gap = 85;
           }, 700);
           luckLvl++;
-          localStorage.setItem('luckLvl', luckLvl);
+          if (luckLvl > localStorage.getItem('luckLvl')) { localStorage.setItem('luckLvl', luckLvl); }
           cvs.style = "border-color: rgb(0, 204, 255)";
           luckLvlSound.play();
       }
@@ -235,7 +234,7 @@ function draw() {
             gap = 80;
           }, 700);
           luckLvl++;
-          localStorage.setItem('luckLvl', luckLvl);
+          if (luckLvl > localStorage.getItem('luckLvl')) { localStorage.setItem('luckLvl', luckLvl); }
           cvs.style = "border-color: rgb(0, 119, 255)";
           luckLvlSound.play();
       }
@@ -245,7 +244,7 @@ function draw() {
             gap = 75;
           }, 700);
           luckLvl++;
-          localStorage.setItem('luckLvl', luckLvl);
+          if (luckLvl > localStorage.getItem('luckLvl')) { localStorage.setItem('luckLvl', luckLvl); }
           cvs.style = "border-color: rgb(221, 0, 255)";
           luckLvlSound.play();
       }
