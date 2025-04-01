@@ -92,6 +92,7 @@ body {
     background: linear-gradient(to top, #ff0000, #ff7575) !important;
     padding: 12px 70px;
     margin-top: 12px;
+    font-size: 22px;
     display: none;
 }
 
